@@ -3,7 +3,6 @@
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
-import { Skeleton } from "@/components/ui/skeleton"
 import Link from "next/link"
 import { UserAvatar } from "@/components/user-avatar"
 
@@ -40,6 +39,9 @@ export const UserItem = ({
                         username={username}
                         isLive={isLive}
                     />
+                    <p className="truncate pt-2">
+                        {username}
+                    </p>
                 </div>
             </Link>
         </Button>
