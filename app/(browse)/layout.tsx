@@ -1,7 +1,6 @@
 import React from "react";
 import { Navbar } from "./_components/navbar";
 import { Sidebar } from "./_components/sidebar";
-import { Container } from "./_components/conteiner";
 
 const Browse = ({
     children,
@@ -13,9 +12,9 @@ const Browse = ({
         <Navbar />
             <div className="flex full-h pt-20">
                 <Sidebar />
-                <Container>
+                <div className="flex-1 ml-60">
                     {children}
-                </Container>
+                </div>
             </div>
         </>
     )

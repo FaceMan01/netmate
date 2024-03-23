@@ -1,5 +1,3 @@
-// "use client"
-
 import { getRecommended } from "@/lib/recommended-service"
 import { Recommended } from "./recommended"
 import { Wrapper } from "./wrapper"
