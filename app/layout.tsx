@@ -27,7 +27,7 @@ export default function RootLayout({
           forcedTheme="dark"
           storageKey="netmate-theme"
           >
-            <Toaster position="bottom-center" closeButton/>
+            <Toaster position="bottom-center" closeButton richColors />
             {children}
           </ThemeProvider>
           </body>

@@ -1,6 +1,25 @@
 import { db } from "./db"
 import { getSelf } from "./auth-service"
 
+export const getFollowedUsers = async () => {
+    try {
+        const self = await getSelf()
+
+        const followedUsers = db.follow.findMany({
+            where: {
+                followerId: self.id,
+            },
+            include: {
+                following: true
+            }
+        })
+
+        return followedUsers
+    } catch {
+        return []
+    }
+}
+
 export const isFollowingUser = async (id: string) => {
     try {
         const self = await getSelf()
@@ -13,7 +32,7 @@ export const isFollowingUser = async (id: string) => {
             throw new Error("User not found")
         }
 
-        if (otherUser.id === self.id) {
+        if (self.id === id) {
             return true
         }
 
@@ -41,7 +60,7 @@ export const followUser = async (id: string) => {
         throw new Error("User not found")
     }
 
-    if (otherUser.id === self.id) {
+    if (self.id === id) {
         throw new Error("Cannot follow")
     }
 
@@ -81,7 +100,7 @@ export const unfollowUser = async (id: string) => {
         throw new Error("User not found")
     }
     
-    if (otherUser.id === self.id) {
+    if (self.id === id) {
         throw new Error("Cannot unfollow")
     }
 

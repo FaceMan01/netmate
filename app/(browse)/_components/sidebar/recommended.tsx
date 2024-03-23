@@ -9,17 +9,21 @@ export const Recommended = ({
     data
 }: RecommendedProps) => {
     return (
-        <div className="">
-            <p className="text-muted-foreground pl-4">
-                Recommended 
-            </p>
-            <ul className=''>
+        <div>
+            <div className="pl-6 mb-4">
+                {!!data.length &&
+                    <p className="text-muted-foreground">
+                        Рекомендуемые каналы
+                    </p>
+                }
+            </div>
+            <ul className="space-y-2 px-2">
                 {data.map((user) => (
                     <UserItem 
-                    key={user.id}
-                    username={user.username}
-                    imageUrl={user.imageUrl}
-                    isLive={true}
+                        key={user.id}
+                        username={user.username}
+                        imageUrl={user.imageUrl}
+                        isLive={true}
                     />
                 ))}
             </ul>
