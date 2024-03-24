@@ -26,7 +26,7 @@ export const Actions = async () => {
                         <Link href={`/dashboard/${user.username}`}>
                             <Clapperboard className="mr-2"/>
                             <span className="hidden lg:block text-base">
-                                Студия
+                                Настройки
                             </span>
                         </Link>
                     </Button>
