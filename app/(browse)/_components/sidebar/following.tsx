@@ -1,10 +1,10 @@
 "use client"
 
-import { Follow, User } from "@prisma/client"
+import { Follow, Stream, User } from "@prisma/client"
 import { UserItem } from "./user-item"
 
 interface FollowingProps {
-    data: (Follow & {following: User})[]    
+    data: (Follow & {following: User & {stream: Stream}})[]    
 }
 
 export const Following = ({
@@ -27,6 +27,7 @@ export const Following = ({
                     key={follow.id}
                     username={follow.following.username}
                     imageUrl={follow.following.imageUrl}
+                    isLive={follow.following.stream?.isLive}
                 />
             ))}
         </ul>

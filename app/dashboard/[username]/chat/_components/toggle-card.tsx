@@ -34,7 +34,7 @@ export const ToggleCard = ({
                 </p>
                 <div className="space-y-2">
                     <Switch disabled={isPending} onCheckedChange={onChange} checked={value}>
-                        {value ? "Включено" : "Отключено"}
+                        {value ? "on" : "off"}
                     </Switch>
                 </div>
             </div>

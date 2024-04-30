@@ -1,8 +1,8 @@
-import { User } from "@prisma/client"
+import { Stream, User } from "@prisma/client"
 import { UserItem } from "./user-item"
 
 interface RecommendedProps {
-    data: User[]
+    data: (User & {stream: Stream})[]
 }
 
 export const Recommended = ({
@@ -23,7 +23,7 @@ export const Recommended = ({
                         key={user.id}
                         username={user.username}
                         imageUrl={user.imageUrl}
-                        isLive={true}
+                        isLive={user.stream?.isLive}
                     />
                 ))}
             </ul>

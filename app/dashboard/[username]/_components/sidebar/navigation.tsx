@@ -17,7 +17,7 @@ export const Navigation = () => {
         },
         {
             name: "Ключ",
-            href: `/dashboard/${user?.username}/keys`,
+            href: `/dashboard/${user?.username}/key`,
         },
         {
             name: "Чат",
