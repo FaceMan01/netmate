@@ -1,9 +1,10 @@
 "use client"
 
 import { useViewerToken } from "@/hooks/viewer-token"
-import { LiveKitRoom } from "@livekit/components-react"
+import { LiveKitRoom, VideoTrack } from "@livekit/components-react"
 import { Stream, User } from "@prisma/client"
 import { Video } from "./video"
+import { Chat } from "./chat"
 
 interface StreamPlayerProps {
     user: User & {stream: Stream}
@@ -37,6 +38,7 @@ export const StreamPlayer = ({
                         hostName={user.username}
                         hostId={user.id}
                     />
+
                 </div>
                 <div>
                     <Chat
@@ -45,7 +47,6 @@ export const StreamPlayer = ({
                         hostId={user.id}
                         isFollowing={isFollowing}
                         isChatEnabled={stream.isChatEnabled}
-                        
                     />
                 </div>
             </LiveKitRoom>
