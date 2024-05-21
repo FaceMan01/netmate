@@ -46,7 +46,7 @@ export const Chat = ({
     }
 
     return (
-        <div className="flex flex-col bg-background h-[calc(100vh-80px)]"> 
+        <div className="sticky top-20 flex flex-col bg-background h-[calc(100vh-80px)]"> 
             <ChatHeader />
             <ChatList
                 messages={reversedMessage}

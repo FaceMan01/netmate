@@ -1,10 +1,9 @@
 import { Navigation } from "./navigation"
-import { Wrapper } from "./wrapper"
 
 export const Sidebar = async () => {
     return (
-        <Wrapper>
+        <div className="fixed left-0 flex flex-col w-60 h-full bg-background border-r border-[#2D2E35] z-50">
             <Navigation />
-        </Wrapper>
+        </div>
     )
 } 
