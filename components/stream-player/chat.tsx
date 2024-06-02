@@ -9,17 +9,17 @@ import { ChatList } from "./chat-list"
 
 interface ChatProps {
     viewerName: string
+    viewerId: string
     hostName: string
     hostId: string
-    isFollowing: boolean
     isChatEnabled: boolean
 }
 
 export const Chat = ({
     viewerName,
+    viewerId,
     hostName,
     hostId,
-    isFollowing,
     isChatEnabled
 }: ChatProps) => {
     const connectionState = useConnectionState()
@@ -34,7 +34,10 @@ export const Chat = ({
     const reversedMessage = useMemo(() => {
         return chatMessages.sort((a, b) => b.timestamp - a.timestamp)
     }, [chatMessages])
+
     const onSubmit = () => {
+        if (!value) return
+
         if (!send) return
 
         send(value)
@@ -50,14 +53,15 @@ export const Chat = ({
             <ChatHeader />
             <ChatList
                 messages={reversedMessage}
-                isHidden={isDisabled}
+                viewerName={viewerName}
+                hostName={hostName}
             />
             <ChatForm
                 onSubmit={onSubmit}
+                viewerId={viewerId}
                 value={value}
                 onChange={onChange}
                 isDisabled={isDisabled}
-                isFollowing={isFollowing}
             />
         </div>
     )

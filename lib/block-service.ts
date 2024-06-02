@@ -16,11 +16,41 @@ export const isBlockedUser = async (id: string) => {
         if (otherUser.id === self.id) {
             return false
         }
-        // NOTE: BlockedByUser & Unique
+        
         const existingBlock = await db.block.findFirst({
             where: {
                 blockedId: otherUser.id,
                 blockerId: self.id
+            },
+        })
+
+        return !!existingBlock
+    } catch {
+        return false
+    }
+}
+
+
+export const isBlockedByUser = async (id: string) => {
+    try {
+        const self = await getSelf()
+        
+        const otherUser = await db.user.findUnique({
+            where: { id }
+        }) 
+
+        if (!otherUser) {
+            throw new Error("User not found")
+        }
+
+        if (otherUser.id === self.id) {
+            return false
+        }
+        
+        const existingBlock = await db.block.findFirst({
+            where: {
+                blockedId: self.id,
+                blockerId: otherUser.id
             },
         })
 
@@ -38,11 +68,11 @@ export const blockUser = async (id: string) => {
     })
 
     if (!otherUser) {
-        throw new Error("User not found")
+        throw new Error("Пользователь не найден")
     }
 
     if (otherUser.id === self.id) {
-        throw new Error("Cannot follow")
+        throw new Error("Нельза заблокировать себя")
     }
 
     const existingBlock = await db.block.findFirst({
@@ -53,7 +83,7 @@ export const blockUser = async (id: string) => {
     })
 
     if (existingBlock) {
-        throw new Error("Already blocked")
+        throw new Error("Уже заблокирован")
     }
 
     const block = await db.block.create({
@@ -78,11 +108,11 @@ export const unblockUser = async (id: string) => {
     })
 
     if (!otherUser) {
-        throw new Error("User not found")
+        throw new Error("Пользователь не найден")
     }
 
     if (otherUser.id === self.id) {
-        throw new Error("Cannot unblock")
+        throw new Error("Нельза разблокировать")
     }
 
     const existingBlock = await db.block.findFirst({

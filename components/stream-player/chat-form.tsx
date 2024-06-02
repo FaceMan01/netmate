@@ -2,21 +2,22 @@
 
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
+import { SignInButton } from "@clerk/nextjs"
 
 interface ChatFormProps {
     onSubmit: () => void
+    viewerId: string
     value: string
     onChange: (value: string) => void
     isDisabled: boolean
-    isFollowing: boolean
 }
 
 export const ChatForm = ({
     onSubmit,
+    viewerId,
     value,
     onChange,
-    isDisabled,
-    isFollowing
+    isDisabled
 }: ChatFormProps) => {
     const handlleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -25,7 +26,8 @@ export const ChatForm = ({
         if (!value || isDisabled) return
         else onSubmit()
     }
-
+    // FIXIT isDisabled {viewerId}
+    isDisabled = false
     return (
         <form onSubmit={handlleSubmit} className="w-full px-5">
             <div className="w-full">
@@ -37,10 +39,21 @@ export const ChatForm = ({
                 />
             </div>
             <div className="pt-2 pb-2">
-                {!isDisabled &&
-                    <Button type="submit" size="sm" onClick={onSubmit}>
+                {!isDisabled ?
+                    viewerId!="viewer-" ?
+                        <Button type="submit" size="sm" onClick={onSubmit}>
+                            Отправить
+                        </Button>  
+                        :
+                        <SignInButton>
+                            <Button type="submit" size="sm">
+                                Отправить
+                            </Button>
+                        </SignInButton>
+                    :
+                    <Button type="submit" size="sm" disabled>
                         Отправить
-                    </Button>
+                    </Button>                 
                 }
             </div>
         </form>

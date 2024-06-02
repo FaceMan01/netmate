@@ -1,33 +1,34 @@
 "use client"
 
 import { useViewerToken } from "@/hooks/viewer-token"
-import { LiveKitRoom, VideoTrack } from "@livekit/components-react"
+import { LiveKitRoom } from "@livekit/components-react"
 import { Stream, User } from "@prisma/client"
 import { Video } from "./video"
 import { Chat } from "./chat"
 import { Header } from "./header"
 import { InfoCard } from "./info-card"
+import { Loading } from "./loading"
 
 interface StreamPlayerProps {
-    user: User & {stream: Stream}
+    user: User & {
+        stream: Stream,
+        _count: { followedBy: number }
+    }
     stream: Stream
     isFollowing: boolean
+    isBlocked: boolean
 }
 
 export const StreamPlayer = ({
     user,
     stream,
-    isFollowing
+    isFollowing,
+    isBlocked
 }: StreamPlayerProps) => {
     const { token, name, id } = useViewerToken(user.id)
 
-    if (!token || !name || !id) {
-        return (
-            <p>
-                Загрузка...
-            </p>
-        )
-    }
+    if (!token || !name || !id) return
+    
     return (
         <div>
             <LiveKitRoom
@@ -47,6 +48,8 @@ export const StreamPlayer = ({
                         imageUrl={user.imageUrl}
                         name={stream.name}
                         isFollowing={isFollowing}
+                        followedByCount={user._count.followedBy}
+                        isBlocked={isBlocked}
                     />
                     <InfoCard
                         hostId={user.id}
@@ -58,9 +61,9 @@ export const StreamPlayer = ({
                 <div>
                     <Chat
                         viewerName={name}
+                        viewerId={id}
                         hostName={user.username}
                         hostId={user.id}
-                        isFollowing={isFollowing}
                         isChatEnabled={stream.isChatEnabled}
                     />
                 </div>

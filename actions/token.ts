@@ -1,6 +1,5 @@
 "use server"
 
-import { v4 } from "uuid"
 import { getUserById } from "@/lib/user-service"
 import { getSelf } from "@/lib/auth-service"
 import { isBlockedUser } from "@/lib/block-service"
@@ -11,8 +10,9 @@ export const createViewerToken = async (hostId: string) => {
 
     try {
         self = await getSelf()
+
     } catch {
-        const id = v4()
+        const id = ""
         const username = `guest#${Math.floor(Math.random() * 1000)}`
         self = {id, username}
     }

@@ -69,7 +69,7 @@ export const InfoEdit = ({
                         </div>
                         <div className="flex justify-between">
                             <DialogClose>
-                                <Button type="button" variant="outline">
+                                <Button type="button" variant="ghost">
                                     Отмена
                                 </Button>
                             </DialogClose>

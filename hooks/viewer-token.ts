@@ -2,7 +2,6 @@ import { createViewerToken } from "@/actions/token"
 import { JwtPayload, jwtDecode } from "jwt-decode"
 import { useEffect, useState } from "react"
 import { toast } from "sonner"
-import { LiveKitRoom  } from "@livekit/components-react"
 
 export const useViewerToken = (hostId: string) => {
     const [token, setToken] = useState('')

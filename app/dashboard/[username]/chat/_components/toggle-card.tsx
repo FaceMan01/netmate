@@ -17,6 +17,7 @@ export const ToggleCard = ({
     value
 }: ToggleCardProps) => {
     const [isPending, startTransition] = useTransition()
+    
     const onChange = () => {
         startTransition(() => {
             updateStream({ [field]: !value })

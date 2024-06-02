@@ -29,7 +29,6 @@ export const UserItem = ({
             className={cn(
                 "w-full h-12", 
                 isActive && "bg-accent"
-
             )}
         >
             <Link href={href}>

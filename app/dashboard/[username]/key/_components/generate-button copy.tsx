@@ -9,9 +9,14 @@ import { useState, useTransition } from "react"
 import { createIngress } from "@/actions/ingress"
 import { toast } from "sonner"
 
+const RTMP = String(IngressInput.RTMP_INPUT)
+const WHIP = String(IngressInput.WHIP_INPUT)
+
+type IngressType = typeof RTMP | typeof WHIP
+
 export const GenerateButton = () => {
     const [isPending, startTransition] = useTransition()
-    const ingressType = String(IngressInput.RTMP_INPUT)
+    const [ingressType, setIngressType] = useState<IngressType>(RTMP)
 
     const onSubmit = () => {
         startTransition(() => {
@@ -34,6 +39,15 @@ export const GenerateButton = () => {
                         Генерировать ключ
                     </DialogTitle>
                 </DialogHeader>
+                <Select disabled={isPending} value={ingressType} onValueChange={(value) => setIngressType(value)}>
+                    <SelectTrigger>
+                        <SelectValue placeholder="Выберите тип трансляции"/>
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectItem value={RTMP}>RTMP</SelectItem>
+                        <SelectItem value={WHIP}>WHIP</SelectItem>
+                    </SelectContent>
+                </Select>
                 <Alert>
                     <AlertTitle>
                         Внимание!
