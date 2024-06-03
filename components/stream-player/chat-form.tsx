@@ -39,7 +39,7 @@ export const ChatForm = ({
                 />
             </div>
             <div className="pt-2 pb-2">
-                {!isDisabled ?
+                {!isDisabled ? (
                     viewerId!="viewer-" ?
                         <Button type="submit" size="sm" onClick={onSubmit}>
                             Отправить
@@ -50,11 +50,11 @@ export const ChatForm = ({
                                 Отправить
                             </Button>
                         </SignInButton>
-                    :
+                    ) : (
                     <Button type="submit" size="sm" disabled>
                         Отправить
                     </Button>                 
-                }
+                )}
             </div>
         </form>
     )

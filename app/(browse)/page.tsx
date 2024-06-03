@@ -1,9 +1,9 @@
-import { UserButton } from "@clerk/nextjs";
+import { Streams } from "./_components/streams";
 
 export default function Page() {
     return (
-        <div>
-            <h1 className="top-200">Home Page</h1>
+        <div className="h-full p-8 mx-auto">
+            <Streams/>
         </div>
     )
 }
