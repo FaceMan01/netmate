@@ -11,21 +11,19 @@ const font = Poppins({
 
 export const Logo = () => {
     return (
-        <Link href="/">
-            <div className="flex items-center gap-x-4 hover:opacity-75 transition">
-                <div>
-                    <Image
-                        src="/logo.svg"
-                        alt="netmate"
-                        height="70"
-                        width="70"   
-                    />
-                </div>
-                <div className={cn("hidden lg:block", font.className)}> 
-                    <p className="font-semibold text-xl">
-                        Net|Mate
-                    </p>
-                </div>
+        <Link href="/" className="flex items-center gap-x-4 hover:opacity-75 transition">
+            <div>
+                <Image
+                    src="/logo.svg"
+                    alt="netmate"
+                    height="70"
+                    width="70"   
+                />
+            </div>
+            <div className={cn("hidden lg:block", font.className)}> 
+                <p className="font-semibold text-xl">
+                    Net|Mate
+                </p>
             </div>
         </Link>
     );

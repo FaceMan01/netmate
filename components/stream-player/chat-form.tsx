@@ -26,8 +26,8 @@ export const ChatForm = ({
         if (!value || isDisabled) return
         else onSubmit()
     }
-    // FIXIT isDisabled {viewerId}
-    isDisabled = false
+
+    // FIXIT {viewerId}
     return (
         <form onSubmit={handlleSubmit} className="w-full px-5">
             <div className="w-full">

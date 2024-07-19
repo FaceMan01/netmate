@@ -63,7 +63,7 @@ export const Header = ({
                         {isLive ? (
                             <div className="font-semibold flex gap-x-1 items-center text-sm text-red-500">
                                 <p>
-                                    {praticipantsCount} {praticipantsCount === 1 ? "зритель" : "зрителей"}
+                                    {praticipantsCount} {praticipantsCount % 10 === 1 ? "зритель" : "зрителей"}
                                 </p>
                             </div>
                         ) : (

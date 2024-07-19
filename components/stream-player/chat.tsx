@@ -2,7 +2,7 @@
 
 import { useChat, useConnectionState, useRemoteParticipant } from "@livekit/components-react"
 import { ConnectionState } from "livekit-client"
-import { useEffect, useMemo, useState } from "react"
+import { useMemo, useState } from "react"
 import { ChatHeader } from "./chat-header"
 import { ChatForm } from "./chat-form"
 import { ChatList } from "./chat-list"

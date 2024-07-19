@@ -22,10 +22,6 @@ export const Navigation = () => {
         {
             name: "Чат",
             href: `/dashboard/${user?.username}/chat`,
-        },
-        {
-            name: "Сообщество",
-            href: `/dashboard/${user?.username}/community`,
         }
     ]
     return (
@@ -37,7 +33,6 @@ export const Navigation = () => {
                     pathname === route.href ? "bg-accent" : "bg-transparent"
                     )}
                 >
-            
                     <Link href={route.href}>
                         <div className="flex items-center gap-x-4">
                                 <span className="text-base">
